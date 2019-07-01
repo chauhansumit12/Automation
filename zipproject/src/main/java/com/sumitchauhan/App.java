@@ -24,13 +24,8 @@ import java.util.zip.ZipOutputStream;
 import com.sumitchauhan.Settings;
 import com.sumitchauhan.FileDetails;
 
-
-/**
- * Hello world!
- *
- */
 public class App {
-	public static final String PATH_SEPARATOR = "\\";
+	public static final String PATH_SEPARATOR = String.valueOf(File.separatorChar);
 
 	static Map<String, List<FileDetails>> categorymap = new HashMap<>();
 
@@ -78,8 +73,8 @@ public class App {
 				InputStream is = sourceFile.getInputStream(zipEntry);
 
 				zos.putNextEntry(zipEntry);
-				int data = is.read();
-				while (data != -1) {
+				int data ;
+				while ((data = is.read())!= -1) {
 					zos.write(data);
 				}
 				// Creating mapping file
